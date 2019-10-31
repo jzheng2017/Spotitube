@@ -1,5 +1,6 @@
 package nl.han.ica.oose.dea.resources;
 
+import nl.han.ica.oose.dea.auth.Secured;
 import nl.han.ica.oose.dea.dto.Playlist;
 import nl.han.ica.oose.dea.dto.Track;
 import nl.han.ica.oose.dea.services.PlaylistService;
@@ -25,6 +26,7 @@ public class PlaylistResource {
         this.trackService = trackService;
     }
 
+    @Secured
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token) {
