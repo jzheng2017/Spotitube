@@ -17,6 +17,7 @@ public class UserDao {
         this.db = new Database("user");
     }
 
+
     public void setDb(Database db) {
         this.db = db;
     }
