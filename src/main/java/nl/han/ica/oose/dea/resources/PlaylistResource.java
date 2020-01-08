@@ -1,5 +1,6 @@
 package nl.han.ica.oose.dea.resources;
 
+import nl.han.ica.oose.dea.auth.Secured;
 import nl.han.ica.oose.dea.dto.Playlist;
 import nl.han.ica.oose.dea.dto.Track;
 import nl.han.ica.oose.dea.services.PlaylistService;
@@ -25,12 +26,14 @@ public class PlaylistResource {
         this.trackService = trackService;
     }
 
+    @Secured
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token) {
         return Response.status(Response.Status.OK).entity(playlistService.getAllPlaylists(token)).build();
     }
 
+    @Secured
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -38,6 +41,7 @@ public class PlaylistResource {
         return Response.status(Response.Status.CREATED).entity(playlistService.addPlaylist(playlist, token)).build();
     }
 
+    @Secured
     @Path("{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -46,6 +50,7 @@ public class PlaylistResource {
         return Response.status(Response.Status.OK).entity(playlistService.updatePlaylist(playlist, token, id)).build();
     }
 
+    @Secured
     @Path("{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,6 +58,7 @@ public class PlaylistResource {
         return Response.status(Response.Status.OK).entity(playlistService.deletePlaylist(token, id)).build();
     }
 
+    @Secured
     @Path("{id}/tracks")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -60,6 +66,7 @@ public class PlaylistResource {
         return Response.status(Response.Status.OK).entity(trackService.getAllTrackCollectionByPlaylist(playlistId, token)).build();
     }
 
+    @Secured
     @Path("{playlistId}/tracks/{trackId}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
@@ -67,6 +74,7 @@ public class PlaylistResource {
         return Response.status(Response.Status.OK).entity(trackService.deleteTrackById(playlistId, trackId, token)).build();
     }
 
+    @Secured
     @Path("{id}/tracks")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

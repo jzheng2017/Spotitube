@@ -1,7 +1,5 @@
 package nl.han.ica.oose.dea.dto;
 
-import java.util.Random;
-
 public class UserToken {
     private String token;
     private String user;
